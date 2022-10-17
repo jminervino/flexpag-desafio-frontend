@@ -1,0 +1,60 @@
+.body {
+  height: 100vh;
+}
+
+.container-body {
+  width: 60%;
+}
+
+.container-inputs {
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  background-color: #dddddd;
+  color: rgb(0, 0, 0);
+}
+
+.error {
+  color: rgb(176, 37, 37);
+  font-weight: 600;
+}
+
+.tableHeight {
+  height: 80%;
+  overflow-y: scroll;
+}
+
+.tableHeight th input {
+  border-radius: 10px;
+  width: 100%;
+}
+
+.inputs label {
+  font-weight: 500;
+  width: 100%;
+}
+
+.inputs select {
+  height: 30px;
+  width: 100%;
+}
+
+.inputs input,
+select {
+  margin-top: -10px;
+  width: 100%;
+}
+
+@media only screen and (max-width: 1300px) {
+  .container-inputs {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .container-body {
+    width: 90%;
+    margin: 10px;
+  }
+}

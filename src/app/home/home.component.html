@@ -1,0 +1,94 @@
+<div class="body d-flex justify-content-center">
+  <div class="container-body">
+    <h1 class="text-center">Histórico de cotações</h1>
+    <form [formGroup]="formulario" class="container-inputs">
+      <div class="inputs d-flex flex-column">
+        <label for="">Moeda</label>
+        <select formControlName="coin" [(ngModel)]="coinType" name="" id="">
+          <option *ngFor="let coin of coins" [value]="coin.ID">
+            {{ coin.TEXT }}
+          </option>
+        </select>
+        <div
+          class="error"
+          *ngIf="
+            formulario.get('coin')?.errors && formulario.get('coin')?.touched
+          "
+        >
+          O Tipo de Moeda é obrigatorio
+        </div>
+      </div>
+      <div class="inputs d-flex flex-column">
+        <label for="">Data Inicial</label>
+        <input formControlName="dateInit" [(ngModel)]="dateInit" type="date" />
+        <div
+          class="error"
+          *ngIf="
+            formulario.get('dateInit')?.errors &&
+            formulario.get('dateInit')?.touched
+          "
+        >
+          Data Inicial Obrigatoria
+        </div>
+      </div>
+      <div class="inputs d-flex flex-column">
+        <label for="">Data Final</label>
+        <input
+          formControlName="dateFinal"
+          [(ngModel)]="dateFinal"
+          type="date"
+          id="dateFinal"
+        />
+        <div
+          class="error"
+          *ngIf="
+            formulario.get('dateFinal')?.errors &&
+            formulario.get('dateFinal')?.touched
+          "
+        >
+          Data Final Obrigatoria
+        </div>
+      </div>
+      <button
+        [disabled]="!formulario.valid"
+        type="button"
+        class="btn btn-success"
+        (click)="consultData(coinType, dateInit, dateFinal)"
+      >
+        Consultar Dados
+      </button>
+      <button type="button" class="btn btn-primary" (click)="refresh()">
+        Atualizar Dados
+      </button>
+    </form>
+    <div class="tableHeight">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">
+              Cotação de compra
+              <input (input)="searchBuy($event)" id="cotCompra" />
+            </th>
+            <th scope="col">
+              Cotação de venda
+              <input (input)="searchSell($event)" id="cotVenda" type="text" />
+            </th>
+            <th scope="col">
+              Data e Hora da cotação
+              <input (input)="searchDT($event)" id="dtCot" type="text" />
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let price of allPrices">
+            <th scope="row"></th>
+            <td>{{ price.cotacaoCompra }}</td>
+            <td>{{ price.cotacaoVenda }}</td>
+            <td>{{ price.dataHoraCotacao }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
